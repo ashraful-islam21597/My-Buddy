@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .mydiv {
+        display: block;
+        background-color:powderblue;
+        }
+        .mydiv br {
+        display: none;
+        }
+    </style>
+</head>
+<body>
+<p>{{ q.name }} </p>
+{% if q %}
+{% for i in q.notification_set.all|dictsortreversed:"updated_at" %}
+<div class="mydiv">
+
+  <small><ul ><li ><a >{{ i.ins }}</a>{{ i.message }}  {{ i.updated_at }}</li></ul></small>
+    <form method="post">
+        {% csrf_token %}
+        <button class="f" type="submit" name="i"  value="{{ i.ins }}">accept</button>
+    </form>
+</div>
+
+{% endfor %}
+{% endif %}
+
+</body>
+</html>

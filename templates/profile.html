@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-color:#99d6ff;">
+<div style="background-color:#581845;padding-left:40px;padding-bottom:10px;padding-top:5px;">
+    <div class="responsive">
+  				<div class="gallery">
+                    {% if q.profilepicture %}
+    				<a target="_blank" href="{{ q.profilepicture.url }}">
+
+						<img style="height:250px;width:250px;border-radius:10%;object-fit:scale-down;"  src="{{ q.profilepicture.url }} ">
+                        {% endif %}
+   					 </a>
+
+  				</div>
+    </div>
+    <address>
+        <h1 style="color:white; "><ins>{{ q.name }}</ins></h1>
+        <h4 style="color:white;" >{{ q.username }}</h4>
+        <h4 style="color:white;" >{{ q.email }}</h4>
+        {% for i in q.profilephotos_set.all %}
+        <img style="height:25px;width:25px;border-radius:100%;"  src="{{ i.profile_pic.url }} ">
+        {% endfor %}
+    </address>
+
+
+</div>
+<div style="background-color:#6666ff;padding-left:25px;">
+  <h2 style="background-color:#6666ff;padding:20px;text-align:center;">{{ q.name }}'s Blogs</h2>
+</div>
+
+{% for i in q.status_set.all|dictsortreversed:"updated_at" %}
+    <div  style="background-color:white;padding:10px;margin-bottom:10px; border:0.5px; border-radius:15px ;">
+        <br>
+        <div >
+            <div><strong style="padding-right:100px;color:#00331a">{{ i.np }}</strong></div>
+            <div><small style="padding-right:100px;color:#00331a"> {{ i.date }} | {{i.day}} </small></div>
+            <div><small style="padding-right:100px;color:#00331a">{{ i.time }}</small></div>
+        </div>
+        <div style="padding-left:20px;" >
+            <p >{{ i.post }}</p>
+        </div>
+        {% if i.profile_pic %}
+        <div><a style="text-decoration:none;" href="{% url 'blog:friendprofile' i.u %}"><img style="height:360px;width:360px;border-radius:10%;object-fit:scale-down;" src="{{ i.profile_pic.url }}" ></a></div>
+        {% endif %}
+    </div>
+{% endfor %}
+
+
+</body>
+</html>

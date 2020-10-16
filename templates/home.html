@@ -1,0 +1,274 @@
+{% load static %}
+<! DOCTYPE html>
+<html>
+<head>
+
+	<link rel="icon"  href="{% static 'image/icon.png' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'My_Buddy/style.css' %}">
+</head>
+	<body>
+
+		<div class='clearfix'>
+
+			<!--toolbar -->
+
+			<div class="d"><ul class="hea1">
+					<li class="l1"><a href="Home"  class="l2">Home</a></li>
+					<li class="l1"><a class="l2"><form  method="post"> {% csrf_token %}<button  class="f" style="outline: none;" type="submit" name="Logout" value="Logout">Logout</button></form></a></li>
+					<li class="l1"><a class="l2" ><form  method="post">{% csrf_token %}<button class="f" style="outline: none;" type="submit" name="profile" value="Profile">Profile</button></form></a></li>
+					<!--<li class="l1"><a class="l2" ">Logout</a></li>-->
+					<li class="l1"><a class="l2" href="{% url 'blog:addfriend' %}">Friends</a></li>
+					<li class="l1"><a class="l2" href="{% url 'blog:note' %}">Notifications</a></li>
+					<form action="{% url 'blog:profile' %}" method="POST">
+						{% csrf_token %}
+						<input style="margin-top:13px;width:500px;" name="s" type="search" placeholder="Search..">
+						<input type="submit" name="search" value="search">
+					</form>
+
+				</ul>
+
+			</div>
+
+			<!--profile section -->
+
+			<div class='a' >
+				<div>
+
+						<button  class="fa" type="submit" name="uploadpic"  value="Upload Photo" class="collapsible"><li class="v"><a class="v1" >Upload</a></li></button>
+
+						<div class="c">
+						<div >
+							<br>
+							<form  method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+									<input type="file" name="image" required>
+									<input type="submit" name="upload" value="upload">
+							</form>
+							<br>
+						</div>
+
+					</div>
+				</div>
+				<br>
+				{% if q %}
+				{% if q.profilepicture %}
+				<div class="responsive">
+  				<div class="gallery">
+    				<a target="_blank" href="{{ q.profilepicture.url }}">
+						<img style="height:100px;width:100px;border-radius:100%;border:1px solid;margin-left:20px;;"  src="{{ q.profilepicture.url }} ">
+   					 </a>
+
+  				</div>
+				</div>
+				{% endif %}
+
+				{% endif %}
+				<br>
+
+				<div>
+
+
+						<button class="fa" type="submit" name="editprofile"  value="Edit Profile"><li class="v"><a class="v1" >Edit Profile</a></li></button>
+
+					<div class="c">
+						<div>
+							<form method="post">
+								{% csrf_token %}
+								Job              : <input name="job" type="text"><br>
+								Present-Address  : <input name="presentaddress" type="text"><br>
+								Permanent-address: <input name="permanentaddress" type="text"><br>
+								<input type="submit" name="save" value="save">
+
+							</form>
+
+
+						</div>
+					</div>
+				</div>
+
+				<a class="l3" href="{% url 'blog:friendprofile' q.username %}"><h3>{{ q.name|title }}</h3></a>
+				<div><small>{{ q.email }}</small></div>
+				<div><small>{{ q.contact }}</small></div>
+				{% if  q.job  %}
+				<div><small>{{ q.job }}</small></div>
+				{% endif %}
+				{% if  q.present_address %}
+					<div><small>{{ q.present_address }}</small></div>
+				{% endif %}
+				{% if  q.permanent_address  %}
+					<div><small>{{ q.permanent_address }}</small></div>
+				{% endif %}
+				<br>
+
+				{% for j in x %}
+					{% if j.profilepicture %}
+					<a class="p" href="{% url 'blog:friendprofile' j.username %}"><img style="height:40px;width:40px;border-radius:10%;border:2px solid blue;"  src="{{ j.profilepicture.url }}" ></a>
+					{% endif %}
+				{% endfor %}
+
+
+			</div>
+			<!--post status -->
+
+			<div class='b'>
+
+					<button type="button" class="collapsible">Write Status</button>
+					<div class="content">
+						<div >
+							<br>
+								<form  method="post">
+									{% csrf_token %}
+										<textarea style="width:100%;outline: none;" id="post" for="w3review"  name="post" rows="5" cols="120" required></textarea>
+											<br>
+										<input type="submit" name="add" value="post">
+								</form>
+							<br>
+							<div >
+
+							<button type="button" class="collapsible">Upload Photo</button>
+
+							<div class="content">
+								<br>
+							<form  method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+									<textarea style="width:100%;outline: none;border:none;border-bottom:2px solid red;" id="caption" for="w3review"  name="caption" rows="1" cols="10"></textarea>
+								    <br>
+
+									<br>
+									<input type="submit" name="uploadtimelinephoto" value="upload">
+
+									<input type="file" name="timelineimage" required>
+
+							</form>
+							</div>
+								<br>
+
+
+						</div>
+						</div>
+					</div>
+						<br>
+
+
+				{% for i in s1 %}
+					   <div  style="background-color:#66ffb3;padding:10px;margin-bottom:10px; border:0.5px; border-radius:10px;">
+								<br>
+								<div >
+									<div><a style="text-decoration:none;" href="{% url 'blog:friendprofile' i.u %}"><img style="height:60px;width:60px;border-radius:100%;" src="{{ i.img.url }}" ></a></div>
+									<div><a style="text-decoration:none;" href="{% url 'blog:friendprofile' i.u %}"><strong style="padding-right:100px;color:#00331a;">{{ i.np }}</strong></a></div>
+									<div><small style="padding-right:100px;color:#00331a;" > {{ i.date }} | {{i.day}} </small></div>
+									<div><small style="padding-right:100px;color:#00331a;">{{ i.time }}</small></div>
+									<div style="padding-left:20px;" >
+										<p >{{ i.post }}</p>
+
+									</div>
+									{% if i.profile_pic %}
+									<div><a style="text-decoration:none;" href="{% url 'blog:friendprofile' i.u %}"><img style="height:260px;width:400px;border-radius:10%;" src="{{ i.profile_pic.url }}" ></a></div>
+									{% endif %}
+									{% if i.timeline_pic %}
+									{% if i.caption %}
+									<div style="padding-left:20px;" >
+										<p >{{ i.caption }}</p>
+
+									</div>
+									{% endif %}
+
+									<div><a style="text-decoration:none;" href="{% url 'blog:friendprofile' i.u %}"><img style="height:360px;width:460px;border-radius:10%;margin:0;border:2px solid white;" src="{{ i.timeline_pic.url }}" ></a></div>
+									{% endif %}
+
+								</div>
+						   <form method="post">{% csrf_token %}
+						   <button type="submit" name="like">Like</button>
+						   </form>
+						</div>
+				{% endfor %}
+
+
+			</div >
+
+
+			<!-- friendlist -->
+
+			<div class='a1'>
+				<div style="overflow:auto;width:50%;height:100%;margin-top:0;border:2px solid;float:left;background-color:red;"><h1>hello</h1></div>
+				<div style="width:50%;height:20%;background-color:blue;border:2px solid;margin-left:50%;"><marquee><h1>hello</h1></marquee></div>
+
+				<div style="width:50%;height:80%;border:1px solid;float:left;clear:right;">
+
+
+				{% if x %}
+					{% for j in q.friend_set.all %}
+							{% for j1 in x %}
+							{% if j.id != q.id %}
+								{% if j.id == j1.id %}
+
+									<ul class="v">
+										<li class="v">
+											<a href="{% url 'blog:friendprofile' j.username %}" class="v1">
+												<div style="float:left;padding-left:15px;"class="tooltip">
+													{% if j1.profilepicture %}
+
+													<img style="height:25px;width:25px;border-radius:10%;"src="{{ j1.profilepicture.url }}">
+													{% endif %}
+													<div class="tooltiptext">
+														{% if j1.profilepicture %}
+														<div style="float:left;width:50%;"><img style="height:75px;width:75px;border-radius:10%;"src="{{ j1.profilepicture.url }}"></div>
+														{% endif %}
+														<div style="float:left;width:50%;padding:1%">
+															<small>{{ j.name }}</small>
+															<small>{{ j.contact }}</small>
+														</div>
+										        	</div>
+
+
+												</div>
+
+												{{ j.name }}
+
+
+											</a>
+										</li>
+									</ul>
+
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+				{% endif %}
+					</div>
+			</div >
+		</div>
+	<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+	<script>
+var coll = document.getElementsByClassName("fa");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+	</body>
+</html>

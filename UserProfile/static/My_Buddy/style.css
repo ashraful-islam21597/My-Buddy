@@ -1,0 +1,299 @@
+.tooltip {
+			position: relative;
+			display: inline-block;
+
+		}
+
+
+		.tooltip .tooltiptext {
+			visibility: hidden;
+			width: 180px;
+			height:100px;
+			background-color: white;
+			color:black;
+			text-align: center;
+			padding: 5px 0;
+			border-radius: 6px;
+			top:-65px;
+			right:105%;
+			position: absolute;
+			z-index: 1;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.9);
+			}
+
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+	    .p{
+	    	border-radius:10%;
+
+	    	transition: width .5s;
+
+	    }
+	    .p:hover{
+	    	width: 5px;
+	    	z-index:1;
+	    }
+		.dropdown {
+			position: relative;
+			display:inline-block;
+
+			}
+
+		.dropdown .dropdown-content {
+			visibility:hidden;
+			overflow:auto;
+			top:0;
+			right:-130%;
+			background-color: #f9f9f9;
+			width: 160px;
+			height:160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.9);
+			padding: 12px 16px;
+			position: absolute;
+			z-index:1;
+			}
+
+		.dropdown:hover .dropdown-content {
+
+			visibility:visible;
+			color:black;
+			z-index:1;
+			}
+
+		.v{
+			list-style-type: none;
+			margin:0;
+			padding:0px;
+			text-align:center;
+			border:0.5px ;
+		  }
+		.v1{
+			background-color:#33bbff;
+			display: inline-block;
+			color: white;
+			text-align:center;
+			padding: 5px 5px;
+			margin-bottom:0;
+			text-decoration: none;
+			width:100%;
+			margin-bottom:1px;
+			hover:#0086b3;
+
+			}
+		img{
+
+		   position: relative;
+		   margin-left: auto;
+  		   margin-right: auto;
+  		   object-position: -10% 0;
+  		   object-fit:cover;
+
+		}
+		img:hover {
+		  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+		}
+		.hea1{
+			list-style-type: none;
+			margin:0;
+			padding:0;
+			overflow:hidden;
+			background-color:#006666;
+			postion:fixed;
+			top:0;
+
+			}
+		.l1{
+			float:left;
+			}
+		.l2{
+			display: inline-block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			}
+		.l3{
+			display: inline-block;
+			color: white;
+			text-align: center;
+			text-decoration: none;
+			}
+		.l3:hover{text-shadow:0 0 3px #FF0000, 0 0 5px #0000FF;}
+
+		li a:hover{
+			 background-color: #004d4d;
+			 width:100%;
+			}
+
+		.f{
+			 background-color: #004d4d;
+			 width:100%;
+			 padding:0;
+			 color: white;
+			 text-align: center;
+			 background:0;
+			 border:none;
+			 cursor: pointer;
+			}
+		.active{
+			background-color: red;
+		  }
+
+
+		* {
+			box-sizing: border-box;
+			}
+		.clearfix::after {
+				content: "";
+				clear: both;
+				display: table;
+				}
+
+		.a{
+			overflow:auto;
+			background-color:#00b3b3;
+			width:15%;
+			height:657px;
+			float:left;
+			text-align:center;
+			color:white;
+			margin:0;
+			}
+		.a1{
+
+			overflow:auto;
+			background-color:#00b3b3;
+			width:30%;
+			height:610px;
+
+			float:left;
+			text-align:center;
+			color:white;
+			z-index:1;
+			}
+
+		.b{
+			overflow:auto;
+			background-color:#b3ffff;
+			width:55%;
+			height:610px;
+			float:left;
+			padding:30px;
+			}
+			::-webkit-scrollbar {
+			  width: 10px;
+			}
+
+			/* Track */
+			::-webkit-scrollbar-track {
+			  background: #f1f1f1;
+			}
+
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+			  background: #888;
+			}
+
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+			  background: #555;
+			}
+		.d{
+
+			background-color:#006666;
+			width:85%;
+			height:7%;
+			text-align:center;
+			float:right;
+			top:0;
+
+
+			}
+
+
+		.collapsible {
+		  text-align:center;
+		  background-color: #006666;
+		  color: white;
+		  cursor: pointer;
+		  padding: 10px;
+		  width: 200px;
+		  height:5%;
+		  border: none;
+		  outline: none;
+		  font-size: 10px;
+		}
+
+		.active, .collapsible:hover {
+		  background-color: #00444d;
+		}
+
+		.content {
+		  padding: 0 18px;
+		  display: none;
+		  overflow: hidden;
+		  background-color: #f1f1f1;
+		  width:100%;
+
+		}
+		.c{
+		  padding: 0 10px;
+		  display: none;
+		  overflow: hidden;
+		  background-color:#148F77;
+		  width:100%;
+
+		}
+		.fa{
+			 background-color: #004d4d;
+			 width:100%;
+			 padding:0;
+			 color: white;
+			 text-align: center;
+			 background:0;
+		  	 color: white;
+		     cursor: pointer;
+		  	 border: none;
+		  	 outline: none;
+		  	 font-size: 15px;
+		}
+		.active, .fa:hover {
+		  background-color: #00444d;
+		}
+
+		.responsive {
+  		padding: 0 30px;
+  		align:center;
+
+
+  		width: 24.99999%;
+		}
+
+		@media only screen and (max-width: 700px){
+  			.responsive {
+    		width: 49.99999%;
+   			 margin: 6px 0;
+  			}
+		}
+
+	@media only screen and (max-width: 500px){
+  	.responsive {
+    width: 100%;
+  	}
+	}
+	.like{
+	 width:33.33%;
+
+	 border:1px solid;
+	 float:left;
+	}
+	.comment{
+	 width:33..33%;
+	 height:100%;
+	 border:1px solid;
+	}
+	body{
+	margin:0;
+	}

@@ -1,0 +1,32 @@
+{% load static %}
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/s2.css' %}">
+
+</head>
+<body >
+<!--{% for j in s %}
+<li><a><form method="post">{% csrf_token %}<input type="submit" name="j" value="{{ j.username }}"></form>{{ j.name }}</a></li>
+{% endfor %}-->
+
+
+{% for k in s %}
+{% if k  not  in x %}
+{% if q.id != k.id %}
+
+	<label for="i{{ forloop.counter }}">{{ k.name }}</label><br>
+	<form  method="post">
+		{% csrf_token %}
+		<button  class="f" type="submit" name="k"  value="{{ k.username }}">add</button>
+	</form>
+
+{% endif %}
+{% endif %}
+
+{% endfor %}
+<form method="post">{% csrf_token %}<button type="submit" name="back">Back</button></form>
+</body>
+</html>
