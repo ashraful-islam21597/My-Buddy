@@ -9,8 +9,9 @@ urlpatterns=[
     path('',views.profile, name='profile'),
     path('<str:username>',views.friendprofile,name='friendprofile'),
     path('addfriend/',views.addfriend, name='addfriend'),
+    path('',views.home, name='home'),
 
-    path('note/',views.note, name='note'),
+    path('notification/',views.note, name='note'),
     path('signin/',views.logout,name='logout'),
 
 

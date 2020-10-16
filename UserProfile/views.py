@@ -146,6 +146,8 @@ def friendprofile(request,username):
         return render(request, 'profile.html', {'q': q})
     else:
         return HttpResponseRedirect('/signin/')
+def home(self):
+    return redirect('/')
 
 def logout(request):
     q=Profile.objects.get(username=request.user.username)

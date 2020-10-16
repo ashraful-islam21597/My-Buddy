@@ -2,6 +2,7 @@
 <! DOCTYPE html>
 <html>
 <head>
+	<title>My Buddy</title>
 
 	<link rel="icon"  href="{% static 'image/icon.png' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'My_Buddy/style.css' %}">
@@ -13,10 +14,11 @@
 			<!--toolbar -->
 
 			<div class="d"><ul class="hea1">
-					<li class="l1"><a href="Home"  class="l2">Home</a></li>
+					<li class="l1"><a class="l2" href="{% url 'blog:home' %}">Home</a></li>
+
 					<li class="l1"><a class="l2"><form  method="post"> {% csrf_token %}<button  class="f" style="outline: none;" type="submit" name="Logout" value="Logout">Logout</button></form></a></li>
 					<li class="l1"><a class="l2" ><form  method="post">{% csrf_token %}<button class="f" style="outline: none;" type="submit" name="profile" value="Profile">Profile</button></form></a></li>
-					<!--<li class="l1"><a class="l2" ">Logout</a></li>-->
+
 					<li class="l1"><a class="l2" href="{% url 'blog:addfriend' %}">Friends</a></li>
 					<li class="l1"><a class="l2" href="{% url 'blog:note' %}">Notifications</a></li>
 					<form action="{% url 'blog:profile' %}" method="POST">
